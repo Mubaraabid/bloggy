@@ -18,7 +18,7 @@ Welcome to the Blog Project! This application allows users to log in, log out, c
 
 Before you begin, ensure you have the following installed:
 
-- Ruby 3.0.0
+- Ruby 3.3.0
 - Rails 7.1.5
 - PostgreSQL
 - git
