@@ -1,23 +1,17 @@
-<div class="container py-5">
-  <div class="flex space-x-4 font-sans font-bold text-base justify-content-end">
-    <%=
-      link_to 'Back',
-              authenticated_root_path,
-              class: 'text-decoration-none text-black'
-    %>
-    <%=
-      button_to 'Sign out',
-                destroy_user_session_path,
-                method: :delete,
-                class: 'text-decoration-none text-black'
-    %>
+<div class="bg-white rounded-lg shadow-sm w-full h-100 overflow-x-hidden">
+  <div class="p-4 d-flex justify-content-end">
+    <%= link_to authenticated_root_path,
+        class: 'btn primary-btn fw-bold' do %>
+
+      <i class="ph-bold ph-arrow-left me-2"></i>Back to Home
+    <% end %>
   </div>
 
   <div class="py-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
         <div class="d-flex justify-content-center">
-          <div class="bg-gray-600 rounded-md shadow-lg p-5 w-full">
+          <div class="border rounded-md shadow-sm p-5 w-full">
             <%= form_with model: article do |form| %>
               <div data-controller="image-cropping" class="mt-2">
                 <div class="mt-2">
@@ -102,12 +96,8 @@
                                       }
                   %>
                 </div>
-                <div class="flex justify-content-end">
-                  <%=
-                    form.submit 'Publish',
-                                class:
-                                  'rounded-md bg-green-100 text-decoration-none py-2 px-4 text-center text-white hover:bg-green-300 mt-2 text-sm shadow-md'
-                  %>
+                <div class="flex justify-content-end py-3">
+                  <%= form.submit 'Publish', class: 'btn primary-btn fw-bold' %>
                 </div>
               </div>
             <% end %>

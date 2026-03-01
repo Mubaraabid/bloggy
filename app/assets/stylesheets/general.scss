@@ -1,0 +1,17 @@
+.sidebar {
+  width: 250px;
+  position: sticky;
+  top: 0;
+
+  .active-sidebar-link {
+    background-color: #BBDCE5 !important;
+  }
+}
+
+.primary-btn {
+  background-color: #C0C9EE;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
