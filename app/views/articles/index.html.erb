@@ -1,42 +1,27 @@
 <% if user_signed_in? %>
-  <div class="container py-5">
-    <div class="d-flex justify-between pb-5">
-      <div class="flex space-x-4 px-2 font-sans font-bold text-base pt-2">
-        <%=
-          link_to 'Home',
-                  authenticated_root_path,
-                  class: 'text-decoration-none text-black'
-        %>
-      </div>
+  <div class="bg-white rounded-lg shadow-sm w-full h-100 d-flex">
+    <% if @articles.any? %>
+      <div class="p-4 w-100">
+        <%= turbo_frame_tag :articlelist, src: articles_list_path(page: @articles.current_page), loading: :lazy do %>
+          <section class="bg-white dark:bg-gray-900" id="articles_placeholder">
+            <div class="row px-6 animate-pulse">
+              <% 8.times do %>
+                <div class="col-12 col-lg-6 col-xl-4 col-xxl-3">
+                  <%= render 'articles_placeholder' %>
+                </div>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
 
-      <div>
-        <p class="text-3xl font-bold text-green-100">Bloggy</p>
+        <%= turbo_frame_tag 'articles_pagination' %>
       </div>
-
-      <div class="flex space-x-4 px-2 font-sans font-bold text-base pt-2">
-        <%=
-          link_to 'Write',
-                  new_article_path,
-                  class: 'text-decoration-none text-black'
-        %>
-        <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <div class="d-flex flex-column align-items-center justify-content-center flex-grow-1">
+        <%= image_tag "no_article.png", class: "max-w-md w-full" %>
+        <h2 class="mt-4 ">No Articles Here Yet!</h2>
       </div>
-    </div>
-
-    <%= turbo_frame_tag :articlelist, src: articles_list_path(page: @articles.current_page), loading: :lazy do %>
-      <section class="bg-white dark:bg-gray-900" id="articles_placeholder">
-        <div class="container px-6 py-10 mx-auto animate-pulse">
-          <div
-            class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
-            <% for a in 1..8 do %>
-              <%= render 'articles_placeholder' %>
-            <% end %>
-          </div>
-        </div>
-      </section>
     <% end %>
-
-    <%= turbo_frame_tag 'articles_pagination' %>
   </div>
 <% else %>
   <%=

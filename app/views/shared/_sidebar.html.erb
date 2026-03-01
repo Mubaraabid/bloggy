@@ -1,0 +1,36 @@
+<div class="d-flex flex-column p-3 text-white vh-100 bg-gray-600 sidebar">
+  <header class="mb-4 pb-2 text-center">
+    <span class="fs-4 fw-bold text-dark">
+      Bloggy
+    </span>
+  </header>
+
+  <nav class="flex-grow-1">
+    <ul class="nav nav-pills flex-column gap-2">
+      <li class="nav-item">
+        <%= link_to authenticated_root_path,
+          class: "nav-link text-dark d-flex align-items-center fw-bold #{'active-sidebar-link' if current_page?(authenticated_root_path)}" do %>
+          <i class="ph-bold ph-house me-2"></i>
+          Home
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_article_path,
+          class: "nav-link text-dark d-flex align-items-center fw-bold #{'active-sidebar-link' if current_page?(new_article_path)}" do %>
+          <i class="ph-bold ph-plus me-2"></i>
+            Create
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="mt-auto pt-3">
+    <%= button_to destroy_user_session_path,
+                  method: :delete,
+                  class: "text-dark d-flex align-items-center fw-bold px-3 py-2" do %>
+
+      <i class="ph-bold ph-sign-out me-2"></i>
+        Sign out
+    <% end %>  
+  </div>
+</div>
